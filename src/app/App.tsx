@@ -1,38 +1,63 @@
-import logo from '@assets/logo.svg';
+import JSConfetti from 'js-confetti';
 import { useState } from 'react';
-import './App.css';
+
+const jsConfetti = new JSConfetti();
+
+const joyeux = new Audio('sounds/joyeux.mp3');
+const noel = new Audio('sounds/noel.mp3');
+const grobin = new Audio('sounds/grobin.mp3');
+// const joyeuxNoel = new Audio('sounds/joyeux-noel-grobin.mp3');
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [clickCount, setClickCount] = useState(0);
+
+  const handleExplode = () => {
+    switch (clickCount) {
+      case 0:
+        joyeux.play();
+        break;
+      case 1:
+        noel.play();
+        break;
+      case 2:
+        grobin.play();
+        break;
+    }
+    // joyeuxNoel.play();
+
+    setClickCount((prev) => (prev === 2 ? 0 : prev + 1));
+
+    jsConfetti.addConfetti({
+      emojis: ['🌈', '⚡️', '💥', '✨', '💫', '🌸']
+    });
+  };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a className="App-link" href="https://reactjs.org" target="_blank" rel="noopener noreferrer">
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
-      </header>
+    <div
+      style={{
+        display: 'flex',
+        position: 'relative',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100dvh',
+        width: '100dvw',
+        backgroundColor: '#201A1A',
+        color: '#c1c2c5'
+      }}
+      onClick={handleExplode}
+    >
+      <span
+        style={{
+          fontWeight: 600,
+          fontSize: '2rem',
+          textAlign: 'center',
+          padding: 20,
+          WebkitTapHighlightColor: 'transparent',
+          userSelect: 'none'
+        }}
+      >
+        {"Active le son et appuye sur l'écran"}
+      </span>
     </div>
   );
 }

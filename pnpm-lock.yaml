@@ -20,7 +20,9 @@ specifiers:
   eslint-plugin-react-hooks: ^4.6.0
   eslint-plugin-testing-library: ^5.6.0
   happy-dom: ^6.0.4
+  howler: ^2.2.3
   husky: ^8.0.1
+  js-confetti: ^0.11.0
   lint-staged: ^11.2.3
   prettier: ^2.7.1
   react: ^18.2.0
@@ -31,6 +33,8 @@ specifiers:
   vitest: ^0.21.0
 
 dependencies:
+  howler: 2.2.3
+  js-confetti: 0.11.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
 
@@ -2686,6 +2690,10 @@ packages:
       lru-cache: 6.0.0
     dev: true
 
+  /howler/2.2.3:
+    resolution: {integrity: sha512-QM0FFkw0LRX1PR8pNzJVAY25JhIWvbKMBFM4gqk+QdV+kPXOhleWGCB6AiAF/goGjIHK2e/nIElplvjQwhr0jg==}
+    dev: false
+
   /html-escaper/2.0.2:
     resolution: {integrity: sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==}
     dev: true
@@ -2997,6 +3005,10 @@ packages:
     resolution: {integrity: sha512-+Ilqi8hgHSAdhlQ3s12CAVNd8H96ZkQBfYoXmArzZnOfAtVAJEiPDBirjByEblvG/4LPJmkL+nBqPO3A1YJAEg==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     dev: true
+
+  /js-confetti/0.11.0:
+    resolution: {integrity: sha512-Hc7I3VI4r4H0nq5q/oQK+JJwGoYRYVHK72fGk8E9Ay1dbh+aiZ9yl0yFp1K4oYeq7YFDQAndYChwqLPA3QWQuA==}
+    dev: false
 
   /js-tokens/4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}

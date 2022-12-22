@@ -18,7 +18,7 @@
   "license": "MIT",
   "homepage": "https://github.com/pchmn/happy-christmas",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "tsc && vite build",
     "build:ci": "tsc && vite build && cp 404.html dist/",
     "test": "vitest run",
@@ -29,6 +29,8 @@
     "lint": "eslint --cache --fix ./src"
   },
   "dependencies": {
+    "howler": "^2.2.3",
+    "js-confetti": "^0.11.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
