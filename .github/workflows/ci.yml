@@ -16,9 +16,6 @@ on:
     paths-ignore:
       - "*.md"
 
-env:
-  GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-
 jobs:
 
   # Build & Test
@@ -27,8 +24,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          token: ${{ env.GITHUB_TOKEN }}
 
       - uses: actions/setup-node@v2
         with:
@@ -53,43 +48,11 @@ jobs:
       - name: BUILD
         run: pnpm build:ci
 
-      # Test
-      - name: TEST
-        run: pnpm test:ci
-
       # Upload dist artifacts
       - uses: actions/upload-artifact@v2
         with:
           name: dist
           path: dist/
-
-      # Upload coverage artifacts
-      - uses: actions/upload-artifact@v2
-        with:
-          name: coverage
-          path: coverage/lcov.info
-
-  coverage:
-    name: Coverage analysis
-    needs: buildAndTest
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          token: ${{ env.GITHUB_TOKEN }}
-
-      # Donwload coverage artifacts
-      - uses: actions/download-artifact@v2
-        with:
-          name: coverage
-
-      # Update coverage file to codecov
-      - name: CODECOV
-        uses: codecov/codecov-action@v1
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: lcov.info
 
   # Deploy to gh pages
   deploy:
@@ -98,15 +61,8 @@ jobs:
     if: github.ref == 'refs/heads/main'
     needs: buildAndTest
     runs-on: ubuntu-latest
-    # Manual deployment
-    # See https://devblogs.microsoft.com/devops/i-need-manual-approvers-for-github-actions-and-i-got-them-now/
-    environment:
-      name: pchmn.github.io/happy-christmas
-      url: https://pchmn.github.io/happy-christmas/
     steps:
       - uses: actions/checkout@v2
-        with:
-          token: ${{ env.GITHUB_TOKEN }}
 
       - uses: actions/setup-node@v2
         with:
@@ -122,7 +78,5 @@ jobs:
       - name: DEPLOY
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ env.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
-          user_name: ${{ secrets.GIT_AUTHOR_NAME }}
-          user_email: ${{ secrets.GIT_AUTHOR_EMAIL }}
