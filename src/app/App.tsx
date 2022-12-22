@@ -1,15 +1,17 @@
+import { Howl } from 'howler';
 import JSConfetti from 'js-confetti';
 
 const jsConfetti = new JSConfetti();
 
-const joyeuxNoel = new Audio('sounds/joyeux-noel-grobin.mp3');
+const sound = new Howl({
+  src: ['sounds/joyeux-noel-grobin.mp3']
+});
 
 function App() {
   const handleExplode = () => {
-    joyeuxNoel.play();
-
+    sound.play();
     jsConfetti.addConfetti({
-      emojis: ['🌈', '⚡️', '💥', '✨', '💫', '🌸']
+      emojis: ['🎅🏼', '🧑🏻‍🎄', '🦌', '🛷', '🌟', '🎄', '❄️', '⛄', '🎁', '🕯', '✨', '🎉', '🛰️']
     });
   };
 
@@ -31,13 +33,14 @@ function App() {
         style={{
           fontWeight: 600,
           fontSize: '2rem',
+          lineHeight: '2.5rem',
           textAlign: 'center',
           padding: 20,
           WebkitTapHighlightColor: 'transparent',
           userSelect: 'none'
         }}
       >
-        {"Active le son et appuye sur l'écran"}
+        {"Active le son et appuie sur l'écran"}
       </span>
     </div>
   );
