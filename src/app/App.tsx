@@ -1,5 +1,6 @@
 import { Howl } from 'howler';
 import JSConfetti from 'js-confetti';
+import { useEffect, useState } from 'react';
 
 const jsConfetti = new JSConfetti();
 
@@ -8,8 +9,17 @@ const sound = new Howl({
 });
 
 function App() {
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  useEffect(() => {
+    sound.on('play', () => setIsPlaying(true));
+    sound.on('end', () => setIsPlaying(false));
+  }, []);
+
   const handleExplode = () => {
-    sound.play();
+    if (!isPlaying) {
+      sound.play();
+    }
     jsConfetti.addConfetti({
       emojis: ['🎅🏼', '🧑🏻‍🎄', '🦌', '🛷', '🌟', '🎄', '❄️', '⛄', '🎁', '🕯', '✨', '🎉', '🛰️']
     });
